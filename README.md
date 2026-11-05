@@ -135,3 +135,6 @@ Suggestions, bug reports, and new scene ideas are welcome. If you contribute an 
 ---
 
 Made for slower moments at the command line.
+
+
+*AI was used as assistance in the creation of this APP*
