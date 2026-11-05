@@ -1,74 +1,134 @@
 # Cozy Worlds
 
-A collection of standalone Python terminal animations for Linux.
+**A collection of cosy, animated worlds for your terminal.**
+
+Cozy Worlds brings quiet scenes to your Linux terminal using lightweight, standalone Python animations and ANSI true-colour. Settle into a rainy evening, watch a campfire flicker beneath the mountains, or enjoy a moonlit pond — all without opening a separate graphics application.
+
+## Scenes
+
+Cozy Worlds currently includes:
+
+- **Fireplace** — a warm, flickering fire.
+- **Rainy Window** — rainfall against a window, with a cosy indoor view.
+- **Mountain Campfire** — a campfire beneath a night sky, surrounded by mountains.
+- **Moonlit Pond** — a peaceful pond beneath the moon.
+- **Sleeper Train** — a quiet train compartment passing through a snowy night.
 
 ## Requirements
 
-- Linux/macOS terminal with ANSI true-colour support
+- Linux terminal with ANSI true-colour (24-bit) support
 - Python 3
 - Git (for the installer)
 
-The animations are plain Python scripts. They do not need a separate graphics engine.
+No Python packages need to be installed for the standard animations or launcher.
 
-## Add the animations
+## Install
 
-Copy the standalone animation `.py` files into `animations/`. For example:
-
-```text
-animations/
-├── fireplace.py
-├── rainy_window.py
-├── mountain_campfire.py
-├── moonlit_pond.py
-└── sleeper_train.py
-```
-
-Each animation should run by itself with `python3 animations/name.py`.
-
-## Publish this repository
-
-1. Create a GitHub repository named `cozy-worlds`.
-2. Upload `install.sh`, `launcher.py`, `README.md`, `.gitignore`, and the `animations/` folder with your animation scripts.
-3. In `install.sh`, replace `USERNAME` in the `REPO_URL` with your GitHub username.
-4. Make sure the repository is public if you want anyone to install it without signing in.
-
-## Install for users
-
-Once published, users can run:
+Run the following command, replacing `USERNAME` with the GitHub account that hosts this repository:
 
 ```bash
 curl -fsSL https://raw.githubusercontent.com/USERNAME/cozy-worlds/main/install.sh | bash
 ```
 
-Replace `USERNAME` with your GitHub username.
+The installer downloads Cozy Worlds to:
 
-The installer clones the repository into `~/.local/share/cozy-worlds` and creates a `cozy` command in `~/.local/bin`.
+```text
+~/.local/share/cozy-worlds
+```
 
-Then run:
+It also creates a `cozy` command in:
+
+```text
+~/.local/bin
+```
+
+If `cozy` is not found after installation, add `~/.local/bin` to your `PATH`:
+
+```bash
+echo 'export PATH="$HOME/.local/bin:$PATH"' >> ~/.bashrc
+source ~/.bashrc
+```
+
+If you use Zsh, add that line to `~/.zshrc` instead.
+
+## Launch
+
+Start the menu with:
 
 ```bash
 cozy
 ```
 
-If the terminal says `cozy: command not found`, add this to `~/.bashrc` (Bash) or `~/.zshrc` (Zsh), then open a new terminal:
+Use the arrow keys to select a scene, then press **Enter** to play it.
+
+### Launcher controls
+
+| Key | Action |
+|---|---|
+| Up / Down | Select a scene |
+| Enter / Space | Play selected scene |
+| R | Rescan the animations folder |
+| Q / Esc | Quit the launcher |
+
+Individual animations can also be run directly:
 
 ```bash
-export PATH="$HOME/.local/bin:$PATH"
+python3 ~/.local/share/cozy-worlds/animations/moonlit_pond.py
 ```
+
+The animation itself can be exited using **Q** or **Esc**.
 
 ## Update
 
-Run the same curl installer command again. It will pull the latest version from GitHub.
+Run the installation command again. If Cozy Worlds is already installed, the installer updates it from the GitHub repository.
 
 ## Uninstall
+
+Remove the launcher command and downloaded files:
 
 ```bash
 rm -f ~/.local/bin/cozy
 rm -rf ~/.local/share/cozy-worlds
 ```
 
+## Add your own scenes
+
+The launcher automatically discovers Python animation files in the `animations/` directory.
+
+To add a scene:
+
+1. Create a standalone Python animation script.
+2. Put the `.py` file in `animations/`.
+3. Run `cozy` again, or press **R** in the menu to rescan.
+
+Each animation should run independently with Python 3 and should manage terminal setup and restoration itself.
+
+## Project layout
+
+```text
+cozy-worlds/
+├── animations/
+│   ├── fireplace.py
+│   ├── rainy_window.py
+│   ├── mountain_campfire.py
+│   ├── moonlit_pond.py
+│   └── sleeper_train.py
+├── install.sh
+├── launcher.py
+├── README.md
+└── .gitignore
+```
+
 ## Notes
 
-- The installer runs downloaded shell code, so users should inspect `install.sh` before running it if they do not trust the source.
-- The animations are downloaded as part of the Git clone; they are not executed directly from GitHub's web page.
-- The launcher scans `animations/` for `.py` files automatically.
+- Cozy Worlds is designed for terminal environments that support ANSI true-colour.
+- Appearance may vary depending on terminal size, font, and colour support.
+- The installer downloads and runs code from this repository. Only run it if you trust the source; you can inspect `install.sh` before installing.
+
+## Contributing
+
+Suggestions, bug reports, and new scene ideas are welcome. If you contribute an animation, keep it self-contained and make sure it restores the terminal cleanly when it exits.
+
+---
+
+Made for slower moments at the command line.
