@@ -1,0 +1,1 @@
+"""Independent Cozy Worlds scenes."""
