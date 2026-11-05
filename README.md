@@ -84,12 +84,15 @@ Run the installation command again. If Cozy Worlds is already installed, the ins
 
 ## Uninstall
 
-Remove the launcher command and downloaded files:
+You can remove Cozy Worlds directly from its command:
 
 ```bash
-rm -f ~/.local/bin/cozy
-rm -rf ~/.local/share/cozy-worlds
+cozy -uninstall
 ```
+
+This removes the `cozy` launcher link and the installed Cozy Worlds folder at
+`~/.local/share/cozy-worlds`. It does not remove Python, Git, or any of your
+other files.
 
 ## Add your own scenes
 
