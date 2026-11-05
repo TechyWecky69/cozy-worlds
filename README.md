@@ -24,10 +24,10 @@ No Python packages need to be installed for the standard animations or launcher.
 
 ## Install
 
-Run the following command, replacing `USERNAME` with the GitHub account that hosts this repository:
+Run the following command:
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/USERNAME/cozy-worlds/main/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/TechyWecky69/cozy-worlds/main/install.sh | bash
 ```
 
 The installer downloads Cozy Worlds to:
